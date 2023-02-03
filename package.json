@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.14",
-    "daisyui": "^2.49.0",
-    "firebase": "^9.16.0",
-    "vue": "^3.2.45",
+    "daisyui": "^2.50.0",
+    "firebase": "^9.17.0",
+    "vue": "^3.2.47",
     "vue-router": "4"
   },
   "devDependencies": {
