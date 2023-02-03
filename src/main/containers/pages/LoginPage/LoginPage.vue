@@ -6,7 +6,7 @@ import { _useOnLogin } from '~/main/containers/pages/LoginPage/_useOnLogin';
 const state = reactive({
   email: "",
   password: "",
-})
+});
 const onLogin = _useOnLogin();
 </script>
 
