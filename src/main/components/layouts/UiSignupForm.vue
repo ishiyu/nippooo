@@ -5,11 +5,11 @@ const props = withDefaults(defineProps<{
   email?: string,
   password?: string,
   displayName?: string,
-  onSignup: (displayName: string, email: string, password: string) => void,
+  onSignup:(displayName: string, email: string, password: string) => void,
 }>(), {
-  email: "",
-  password: "",
-  displayName: "",
+  email: '',
+  password: '',
+  displayName: '',
 });
 
 // Form 故にパラメータだけ状態を持つことにした
@@ -17,7 +17,7 @@ const state = reactive({
   email: props.email,
   password: props.password,
   displayName: props.displayName,
-})
+});
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 import { useRouter } from 'vue-router';
-import useAuthModule from '~/main/modules/useAuthModule';
+import { useAuthModule } from '~/main/modules/useAuthModule';
 import { useAuthStore } from '~/main/stores/AuthStore/AuthStore';
 
 export function _useOnSignup() {
@@ -12,5 +12,5 @@ export function _useOnSignup() {
     if (!authStore.state.error) {
       await router.push({ name: 'Chatroom' });
     }
-  }
+  };
 }

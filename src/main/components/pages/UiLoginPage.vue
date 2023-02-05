@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import UiLoginForm from "~/main/components/layouts/UiLoginForm.vue"
+import UiLoginForm from '~/main/components/layouts/UiLoginForm.vue';
 
 withDefaults(defineProps<{
   email?: string,
   password?: string,
-  onLogin: (email: string, password: string) => void,
+  onLogin:(email: string, password: string) => void,
 }>(), {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 </script>
 

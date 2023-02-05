@@ -2,7 +2,7 @@
 import UiProgressBar from '~/main/components/layouts/UiProgressBar.vue';
 import { useProgressBarStore } from '~/main/stores/ProgressBarStore/ProgressBarStore';
 
-let state = useProgressBarStore().state;
+const { state } = useProgressBarStore();
 </script>
 
 <template>

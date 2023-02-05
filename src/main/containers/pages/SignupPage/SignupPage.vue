@@ -4,10 +4,10 @@ import UiSignupPage from '~/main/components/pages/UiSignupPage.vue';
 import { _useOnSignup } from '~/main/containers/pages/SignupPage/_useOnSignup';
 
 const state = reactive({
-  displayName: "",
-  email: "",
-  password: "",
-})
+  displayName: '',
+  email: '',
+  password: '',
+});
 const onSignup = _useOnSignup();
 </script>
 

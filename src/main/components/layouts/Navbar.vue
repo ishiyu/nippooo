@@ -1,21 +1,23 @@
 <script lang="ts">
-import useAuthModule from '~/main/modules/useAuthModule';
+import { useAuthModule } from '~/main/modules/useAuthModule';
 import { useAuthStore } from '~/main/stores/AuthStore/AuthStore';
 
+// eslint-disable-next-line import/no-default-export
 export default {
   setup() {
     const authStore = useAuthStore();
     const { logout } = useAuthModule();
 
     const handleClick = async () => {
-      await logout()
+      await logout();
       if (!authStore.state.error) {
-        console.log('user logged out')
+        // eslint-disable-next-line no-console
+        console.log('user logged out');
       }
-    }
-    return { handleClick, user: authStore.state.me }
-  }
-}
+    };
+    return { handleClick, user: authStore.state.me };
+  },
+};
 </script>
 
 <template>

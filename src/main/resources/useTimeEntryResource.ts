@@ -11,6 +11,6 @@ export function useTimeEntryResource() {
       return getDocs(timeEntriesCollection).catch((e) => {
         if (e instanceof Error) alertStore.show(e.message);
       });
-    }
+    },
   };
 }

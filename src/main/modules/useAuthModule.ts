@@ -1,8 +1,8 @@
-import { auth } from '~/config/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '~/config/firebase';
 import { useAuthStore } from '~/main/stores/AuthStore/AuthStore';
 
-export default function useAuthModule() {
+export function useAuthModule() {
   const store = useAuthStore();
 
   return {
@@ -11,13 +11,13 @@ export default function useAuthModule() {
      * @param email
      * @param password
      */
-    async login(email:string , password:string) {
+    async login(email:string, password:string) {
       store.clear();
 
       try {
-        const credential = await signInWithEmailAndPassword(auth, email,password);
+        const credential = await signInWithEmailAndPassword(auth, email, password);
         store.updateMe(credential.user);
-      } catch(err) {
+      } catch (err) {
         if (err instanceof Error) {
           store.updateError(err);
         } else {
@@ -49,7 +49,7 @@ export default function useAuthModule() {
       store.clear();
 
       try {
-        const credential = await createUserWithEmailAndPassword(auth, email, password)
+        const credential = await createUserWithEmailAndPassword(auth, email, password);
         if (!credential) {
           return store.updateError(new Error('Could not complete the signup'));
         }
@@ -58,13 +58,17 @@ export default function useAuthModule() {
         // updateProfile() はdisplayNameに入力した名前を表示するために必要
         await updateProfile(credential.user, { displayName });
         store.updateMe(credential.user);
+        return credential.user;
       } catch (err) {
+        let error: Error;
         if (err instanceof Error) {
-          store.updateError(err);
+          error = err;
         } else {
-          return store.updateError(new Error('Could not complete the signup'));
+          error = new Error('Could not complete the signup');
         }
+        store.updateError(error);
+        return Promise.reject(error);
       }
-    }
+    },
   };
 }

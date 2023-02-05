@@ -1,7 +1,29 @@
-import { inject, InjectionKey, onUnmounted, provide, reactive, readonly } from 'vue';
+import {
+  inject, InjectionKey, onUnmounted, provide, reactive, readonly,
+} from 'vue';
+import { assertType } from 'type-plus';
 
 export type ProgressBarStoreType = ReturnType<typeof progressBarStore>;
 export const PROGRESS_BAR_STORE_KEY: InjectionKey<ProgressBarStoreType> = Symbol('ProgressBarStoreKey');
+
+function progressBarStore() {
+  const state = reactive({
+    isShown: false,
+    message: '',
+  });
+
+  return {
+    state: readonly(state),
+    show(message: string) {
+      state.isShown = true;
+      state.message = message;
+    },
+    hide() {
+      state.isShown = false;
+      state.message = '';
+    },
+  };
+}
 
 export function provideProgressBarStore() {
   const store = progressBarStore();
@@ -14,24 +36,7 @@ export function provideProgressBarStore() {
 }
 
 export function useProgressBarStore() {
-  return inject(PROGRESS_BAR_STORE_KEY)!;
-}
-
-function progressBarStore() {
-  const state = reactive({
-    isShown: false,
-    message: "",
-  });
-
-  return {
-    state: readonly(state),
-    show(message: string) {
-      state.isShown = true;
-      state.message = message;
-    },
-    hide() {
-      state.isShown = false;
-      state.message = "";
-    },
-  }
+  const store = inject(PROGRESS_BAR_STORE_KEY);
+  assertType.as<ProgressBarStoreType>(store);
+  return store;
 }

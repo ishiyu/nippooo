@@ -4,17 +4,17 @@ import { reactive } from 'vue';
 const props = withDefaults(defineProps<{
   email?: string,
   password?: string,
-  onLogin: (email: string, password: string) => void,
+  onLogin:(email: string, password: string) => void,
 }>(), {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 
 // Form 故にパラメータだけ状態を持つことにした
 const state = reactive({
   email: props.email,
   password: props.password,
-})
+});
 </script>
 
 <template>

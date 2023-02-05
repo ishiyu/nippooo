@@ -11,7 +11,7 @@ export function _watchUserForForceLogout(authStore: AuthStoreType) {
     const inNoAuthPage = ['Login', 'Signup'].includes(routeName.toString());
 
     // Login しているのに、Login不要のページにいたら => Main ページへ
-    if (authStore.state.me  && inNoAuthPage)  router.push({ name: 'Chatroom' });
+    if (authStore.state.me && inNoAuthPage) router.push({ name: 'Chatroom' });
     // Login してないのに、Login必要なページにいたら => Login ページへ
     if (!authStore.state.me && !inNoAuthPage) router.push({ name: 'Login' });
   });

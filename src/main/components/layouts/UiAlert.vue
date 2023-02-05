@@ -3,9 +3,9 @@ import { ExclamationCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 
 withDefaults(defineProps<{
   message?: string,
-  onClose: () => void,
+  onClose:() => void,
 }>(), {
-  message: "",
+  message: '',
 });
 </script>
 
