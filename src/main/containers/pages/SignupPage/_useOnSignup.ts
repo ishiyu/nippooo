@@ -10,7 +10,7 @@ export function _useOnSignup() {
   return async function onLogin(email: string, password: string, displayName: string) {
     await signup(email, password, displayName);
     if (!authStore.state.error) {
-      await router.push({ name: 'Chatroom' });
+      await router.push({ name: 'Day' });
     }
   };
 }

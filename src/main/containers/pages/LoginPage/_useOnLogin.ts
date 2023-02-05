@@ -20,7 +20,7 @@ export function _useOnLogin() {
     if (authStore.state.error) {
       alertStore.show(`${authStore.state.error.name}: ${authStore.state.error.message}`);
     } else {
-      await router.push({ name: 'Chatroom' });
+      await router.push({ name: 'Day' });
     }
   };
 }

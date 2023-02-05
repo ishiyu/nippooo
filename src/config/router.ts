@@ -4,7 +4,10 @@ import {
 import { auth } from '~/config/firebase';
 import LoginPage from '~/main/containers/pages/LoginPage/LoginPage.vue';
 import SignupPage from '~/main/containers/pages/SignupPage/SignupPage.vue';
-import UiChatroomPage from '~/main/components/pages/UiChatroomPage.vue';
+import UiDayPage from '~/main/components/pages/UiDayPage.vue';
+import UiWeekPage from '~/main/components/pages/UiWeekPage.vue';
+import UiCategoryPage from '~/main/components/pages/UiCategoryPage.vue';
+import UiTeamPage from '~/main/components/pages/UiTeamPage.vue';
 
 // auth guard
 const requireAuth = (
@@ -31,7 +34,7 @@ const requireNoAuth = (
   const user = auth.currentUser;
 
   // userが認証されているときはメイン画面へ
-  if (user) return next({ name: 'Chatroom' });
+  if (user) return next({ name: 'Day' });
   // userが認証されていないとき、飛び先に送る
   return next();
 };
@@ -48,8 +51,23 @@ const routes = [{
   beforeEnter: requireNoAuth, // 認証をしているユーザーがみれないようにする
 }, {
   path: '/',
-  name: 'Chatroom',
-  component: UiChatroomPage,
+  name: 'Day',
+  component: UiDayPage,
+  beforeEnter: requireAuth, // 認証をしているユーザーのみがみれるようにする
+}, {
+  path: '/week',
+  name: 'Week',
+  component: UiWeekPage,
+  beforeEnter: requireAuth, // 認証をしているユーザーのみがみれるようにする
+}, {
+  path: '/categories',
+  name: 'Category',
+  component: UiCategoryPage,
+  beforeEnter: requireAuth, // 認証をしているユーザーのみがみれるようにする
+}, {
+  path: '/teams',
+  name: 'Team',
+  component: UiTeamPage,
   beforeEnter: requireAuth, // 認証をしているユーザーのみがみれるようにする
 }];
 
