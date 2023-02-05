@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useGetTimeEntries } from '~/main/functions/useGetTimeEntries';
-import UiSidebar from '~/main/components/layouts/UiSidebar.vue';
+import Sidebar from '~/main/containers/layouts/Sidebar.vue';
 
 const { data, isLoading } = useGetTimeEntries();
 </script>
 
 <template>
   <div>
-    <ui-sidebar>
+    <sidebar>
       <h1>Day Page</h1>
       <div>
         isLoading: {{ isLoading }}
@@ -22,6 +22,6 @@ const { data, isLoading } = useGetTimeEntries();
           item.ended_at: {{ item.stoped_at.toDate() }}
         </div>
       </div>
-    </ui-sidebar>
+    </sidebar>
   </div>
 </template>

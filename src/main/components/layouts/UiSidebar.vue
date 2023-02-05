@@ -1,19 +1,11 @@
 <script setup lang="ts">
-import { useAuthStore } from '~/main/stores/AuthStore/AuthStore';
-import { useAuthModule } from '~/main/modules/useAuthModule';
+import { AuthStoreType } from '~/main/stores/AuthStore/AuthStore';
 
-const authStore = useAuthStore();
-const { logout } = useAuthModule();
-
-const handleClick = async () => {
-  await logout();
-  if (!authStore.state.error) {
-    // eslint-disable-next-line no-console
-    console.log('user logged out');
-  }
-};
-
-const user = authStore.state.me;
+const props = withDefaults(defineProps<{
+  authState: AuthStoreType['state'],
+  onLogout:() => void,
+}>(), {
+});
 </script>
 
 <template>
@@ -66,13 +58,13 @@ const user = authStore.state.me;
         <!-- 下に付ける分のメニュー -->
         <ul class="menu menu-compact text-base-content flex flex-col p-4">
           <li class="bg-neutral text-neutral-content rounded p-4 text-sm">
-            ログイン名：{{ user.displayName }}
+            ログイン名：{{ $props.authState.me.displayName }}
             <br>
             <br>
-            現在のログイン(アドレス)：{{ user.email }}
+            現在のログイン(アドレス)：{{ $props.authState.me.email }}
           </li>
           <li class="mt-4">
-            <a href="#" @click="handleClick">
+            <a href="#" @click="$props.onLogout">
               ログアウト
             </a>
           </li>
