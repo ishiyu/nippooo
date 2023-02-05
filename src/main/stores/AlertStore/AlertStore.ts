@@ -1,7 +1,7 @@
 import {
   inject, InjectionKey, onUnmounted, provide, reactive, readonly,
 } from 'vue';
-import { assertType } from 'type-plus/esm';
+import { assertType } from 'type-plus';
 
 export type AlertStoreType = ReturnType<typeof alertStore>;
 export const ALERT_STORE_KEY: InjectionKey<AlertStoreType> = Symbol('AlertStoreKey');
